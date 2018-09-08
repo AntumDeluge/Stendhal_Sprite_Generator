@@ -424,15 +424,14 @@ $(document).ready(function() {
     var anim = $("#previewAnimations").get(0);
     var animCtx = anim.getContext("2d");
     var $selectedAnim = $("#whichAnim>:selected");
-    var animRowStart = parseInt($selectedAnim.data("row"));
     var animRowNum = parseInt($selectedAnim.data("num"));
     var animRowFrames = parseInt($selectedAnim.data("cycle"));
+    var rowOrder = [2, 0, 1];
     var frameOrder = [1, 0, 1, 2];
     var curFrameIndex = 0;
 
     $("#whichAnim").change(function() {
         $selectedAnim = $("#whichAnim>:selected");
-        animRowStart = parseInt($selectedAnim.data("row"));
         animRowNum = parseInt($selectedAnim.data("num"));
         animRowFrames = parseInt($selectedAnim.data("cycle"));
         curFrameIndex = 0;
@@ -441,8 +440,8 @@ $(document).ready(function() {
     function nextFrame() {
     	curFrameIndex = (curFrameIndex + 1) % frameOrder.length;
         animCtx.clearRect(0, 0, anim.width, anim.height);
-        for (var i = 0; i < animRowNum; ++i) {
-        	animCtx.drawImage(canvas, frameOrder[curFrameIndex] * 48, (animRowStart + i) * 64, 48, 64, i * 48, 0, 48, 64);
+        for (var i = 0; i < rowOrder.length; ++i) {
+        	animCtx.drawImage(canvas, frameOrder[curFrameIndex] * 48, rowOrder[i] * 64, 48, 64, i * 48, 0, 48, 64);
         }
         // 150ms delay
         setTimeout(nextFrame, 150);
