@@ -103,14 +103,8 @@ $(document).ready(function() {
         return $(this).data("oversize");
     }).length > 0;
 
-    // Expand canvas if oversize element used
-    if (oversize) {
-        canvas.width = 1536;
-        canvas.height = 1344 + 768;
-    } else {
-        canvas.width = 832;
-        canvas.height = 1344;
-    }
+    canvas.width = 144;
+    canvas.height = 256;
     $("#chooser>ul").css("height", canvas.height);
 
     // called each time redrawing
@@ -124,15 +118,8 @@ $(document).ready(function() {
             return $(this).data("oversize");
         }).length > 0;
 
-        // If an oversize element is being used, expand canvas,
-        // otherwise return it to normal size
-        if (oversize) {
-            canvas.width = 1536;
-            canvas.height = 1344 + 768;
-        } else {
-            canvas.width = 832;
-            canvas.height = 1344;
-        }
+        canvas.width = 144;
+        canvas.height = 256;
         $("#chooser>ul").css("height", canvas.height);
         oversize = !!oversize;
 
