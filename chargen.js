@@ -454,7 +454,7 @@ $(document).ready(function() {
         currentFrame = (currentFrame + 1) % animRowFrames;
         animCtx.clearRect(0, 0, anim.width, anim.height);
         for (var i = 0; i < animRowNum; ++i) {
-        	animCtx.drawImage(canvas, currentFrame * 24, (animRowStart + i) * 32, 24, 32, i * 24, 0, 24, 32);
+        	animCtx.drawImage(canvas, currentFrame * 48, (animRowStart + i) * 64, 48, 64, i * 48, 0, 48, 64);
         }
         setTimeout(nextFrame, 1000 / 8);
     }
