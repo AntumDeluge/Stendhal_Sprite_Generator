@@ -427,23 +427,25 @@ $(document).ready(function() {
     var animRowStart = parseInt($selectedAnim.data("row"));
     var animRowNum = parseInt($selectedAnim.data("num"));
     var animRowFrames = parseInt($selectedAnim.data("cycle"));
-    var currentFrame = 0;
+    var frameOrder = [1, 0, 1, 2];
+    var curFrameIndex = 0;
 
     $("#whichAnim").change(function() {
         $selectedAnim = $("#whichAnim>:selected");
         animRowStart = parseInt($selectedAnim.data("row"));
         animRowNum = parseInt($selectedAnim.data("num"));
         animRowFrames = parseInt($selectedAnim.data("cycle"));
-        currentFrame = 0;
+        curFrameIndex = 0;
     });
 
     function nextFrame() {
-        currentFrame = (currentFrame + 1) % animRowFrames;
+    	curFrameIndex = (curFrameIndex + 1) % frameOrder.length;
         animCtx.clearRect(0, 0, anim.width, anim.height);
         for (var i = 0; i < animRowNum; ++i) {
-        	animCtx.drawImage(canvas, currentFrame * 48, (animRowStart + i) * 64, 48, 64, i * 48, 0, 48, 64);
+        	animCtx.drawImage(canvas, frameOrder[curFrameIndex] * 48, (animRowStart + i) * 64, 48, 64, i * 48, 0, 48, 64);
         }
-        setTimeout(nextFrame, 1000 / 8);
+        // 150ms delay
+        setTimeout(nextFrame, 150);
     }
     nextFrame();
 });
